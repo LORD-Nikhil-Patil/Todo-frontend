@@ -37,7 +37,7 @@ import {useFormInput, useLogIn} from "./hooks"
         });
 
         if (!logIn.error && logIn.success) {
-            navigate(state?.path || "/todos", {state: logIn.data?.user.id});
+            navigate(state?.path || "/todos");
         } 
     },[logIn.data])
 

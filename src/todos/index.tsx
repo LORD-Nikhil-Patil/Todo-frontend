@@ -9,7 +9,7 @@ const Todos = () => {
     const todoComponentRef = useRef<TodoComponentHandles>(null);
     const ErrorComponentRef = useRef<ErrorComponentHandles>(null);
     const addTodo = postTodo();
-    const todoList = getTodos();
+    const todoList: any = getTodos();
     const getTodo = gtTodoById();
     const updateTodo = patchTodo();
     const removeTodo = deleteTodo()
@@ -26,7 +26,7 @@ const Todos = () => {
     }, [addTodo.data, updateTodo.data, removeTodo.data,]);
 
     useEffect(() => {
-        toast.error(todoList?.errorData, {
+        toast.error(todoList.errorData , {
             position: "top-center",
             autoClose: 5000,
             hideProgressBar: false,
@@ -37,7 +37,6 @@ const Todos = () => {
             theme: "dark",
             transition: Bounce,
         });
-        console.log("useEffect",  todoList.errorData)
 
     }, [addTodo.error, updateTodo.error, removeTodo.error, todoList.error]);
 

@@ -1,4 +1,4 @@
-import { useState, ChangeEvent, useCallback } from 'react';
+import { useState, ChangeEvent } from 'react';
 import axios from "../api";
 import { create } from "zustand";
 
@@ -28,31 +28,9 @@ interface FormValues {
     password: string;
 }
 
-interface User {
-    id: string;
-    name: string;
-    email: string;
-    isEmailVerified: boolean;
-    proposals: string[];
-}
-
-interface Token {
-    token: string;
-    expires: string;
-}
-
-interface Tokens {
-    access: Token;
-    refresh: Token;
-}
-
-interface UserWithTokens {
-    user: User;
-    tokens: Tokens;
-}
 
 
- 
+
 export const usePostRegister = create<PostRegisterState>((set) => ({
     ...initialState,
   
@@ -60,7 +38,7 @@ export const usePostRegister = create<PostRegisterState>((set) => ({
       set({ ...initialState, loading: true });
       try {
         const response = await axios.post<{ data: any }>("auth/register", body);
-        const data:UserWithTokens = response.data;
+        const data:any = response.data;
         set({ ...initialState, success: true, data: response.data });
         localStorage.setItem("tokens", data.tokens.access.token);
         localStorage.setItem("refreshToken", data.tokens.refresh.token);

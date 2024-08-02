@@ -4,7 +4,6 @@
 
 import { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
 import { create } from "zustand";
-import { Bounce, toast, ToastContainer } from "react-toastify";
 
 import axios from "../api";
 
@@ -45,11 +44,11 @@ interface RequestParams {
   }
   
   export const request = ({ method, url }: AxiosRequestConfig, options?: RequestOptions) => {
-    return create<StoreState>((set, get) => ({
+    return create<StoreState>((set) => ({
       ...initialState,
   
       execute: (parameters: RequestParams = {}) => {
-        const { id, data, params, force } = parameters;
+        const { id, data, params } = parameters;
         set({ ...initialState, loading: true });
        
         // if (!force && method === "GET" && Boolean(get().data)) {

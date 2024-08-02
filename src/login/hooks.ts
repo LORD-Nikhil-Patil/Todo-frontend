@@ -1,4 +1,3 @@
-import { AxiosError } from 'axios';
 import axios from '../api'
 import { ChangeEvent, useState } from 'react';
 import create from 'zustand';
@@ -20,7 +19,7 @@ const initialState: Omit<DataState, 'execute'> = {
   errorData: null,
 };
 
-export const useLogIn = create<DataState>((set, get) => ({
+export const useLogIn = create<DataState>((set) => ({
   ...initialState,
 
   execute: async (body?: any) => { 
